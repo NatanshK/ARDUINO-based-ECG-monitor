@@ -40,17 +40,17 @@ int j = 0;
 const int XP = 6, XM = A2, YP = A1, YM = 7; 
 const int TS_BOT = 907, TS_TOP = 136, TS_LEFT = 942, TS_RT = 139;
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
-int pixel_x, pixel_y;     //Touch_getXY() updates global vars
+int pixel_x, pixel_y;  
 bool Touch_getXY(void)
 {
     TSPoint p = ts.getPoint();
-    pinMode(YP, OUTPUT);      //restore shared pins
+    pinMode(YP, OUTPUT);   
     pinMode(XM, OUTPUT);
-    digitalWrite(YP, HIGH);   //because TFT control pins
+    digitalWrite(YP, HIGH);   
     digitalWrite(XM, HIGH);
     bool pressed = (p.z > MINPRESSURE && p.z < MAXPRESSURE);
     if (pressed) {
-        pixel_x = map(p.x, TS_LEFT, TS_RT, 0, tft.width()); //.kbv makes sense to me
+        pixel_x = map(p.x, TS_LEFT, TS_RT, 0, tft.width()); 
         pixel_y = map(p.y, TS_TOP, TS_BOT, 0, tft.height());
     }
     return pressed;
@@ -130,8 +130,6 @@ void DrawTraceLarge(uint8_t y)
   static uint8_t pt = 0;
   static uint8_t py = 0;
   int i;
-
-  //calcBPM(y, x);
 
   x++;
   x = x % DisplayRepeat;
